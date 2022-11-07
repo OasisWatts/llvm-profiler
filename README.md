@@ -1,3 +1,5 @@
+The source code has LLVMProfiler.so (LLVM Pass code), profiler.cpp and profiler-link.cpp (profiling code).  
+While compiling, the target code passes the LLVM Pass code, to insert the functions in profiler.cpp into the target code. And the compiled target is executed inside the thread of a executable file.
 # Installation
 clang, opt, and llvm-link tools in LLVM is required
 ```
@@ -18,10 +20,7 @@ sudo cmake -P cmake_install.cmake
 ```
 check clang, opt, and llvm-link tools are well installed
 ```
-whereis clang++
-whereis clang
-whereis opt
-whereis llvm-link
+whereis clang++ clang opt llvm-link
 ```
 PAPI, a pmu monitoring tool is used
 ```
@@ -35,8 +34,6 @@ Pyhon3 is required. Install matplotlib if not exist
 pip install matplotlib
 pip install PyQt6
 ```
-# Code
-This consists of LLVMProfiler.so (LLVM Pass code), profiler.cpp and profiler-link.cpp (profiling code)
 # How to Use
 ```	
 make profiler
@@ -45,4 +42,7 @@ Run test
 ```
 make test
 ```
-Write TARGET\_DIR, TARGET\_CODE, TARGET\_OUTPUT, TARGET\_ARG in Makefile and run make target
+To execute on the target file, write TARGET\_DIR, TARGET\_CODE, TARGET\_OUTPUT, TARGET\_ARG in Makefile
+```
+make target
+```
