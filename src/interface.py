@@ -41,7 +41,7 @@ class App(QWidget):
 		rn_label.move(100, 60)
 		rn_label.setStyleSheet("font-size: 17px;")
 # get info
-		info_f = open(self.folder_name + "/info.json", "r");
+		info_f = open("../record/" + self.folder_name + "/info.json", "r");
 		info_str = info_f.read()
 		info_obj = json.loads(info_str)
 		self.record_num = info_obj["record_num"]
@@ -77,9 +77,9 @@ class App(QWidget):
 	def append_img(self):
 		pic = QLabel(self)
 		if self.ratio:
-			pic.setPixmap(QPixmap(self.folder_name + "/" + str(self.rn) + "_" + self.ctg + "_ratio.png"))
+			pic.setPixmap(QPixmap("../record/" + self.folder_name + "/" + str(self.rn) + "_" + self.ctg + "_ratio.png"))
 		else:	
-			pic.setPixmap(QPixmap(self.folder_name + "/" + str(self.rn) + "_" + self.ctg + ".png"))
+			pic.setPixmap(QPixmap("../record/" + self.folder_name + "/" + str(self.rn) + "_" + self.ctg + ".png"))
 		pic.show()
 		pic.resize(1500, 1000)
 		pic.move(100, 130)
@@ -91,7 +91,7 @@ class App(QWidget):
 
 if __name__ == '__main__':
 	if len(sys.argv) == 2:
-		print("Working...\n");
+		print("Displaying...\n");
 		app = QApplication(sys.argv)
 		ex = App(sys.argv[1])
 		ex.show()

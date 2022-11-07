@@ -132,7 +132,6 @@ void insert_back_into_function(char* func_name, long start_time, long long* papi
 }
 
 void init(){
-	printf("init\n");
 	int retval = PAPI_library_init(PAPI_VER_CURRENT);
 
 	if(retval != PAPI_VER_CURRENT && retval > 0)

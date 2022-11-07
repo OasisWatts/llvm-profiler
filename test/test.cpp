@@ -1,15 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "test2.h"
+#include "test1.h"
 
 void call_func(int i){
-	printf("function called: %d\n", i);
-	if(i < 10) call_func(++i);
-	printf("function ended\n");
+	printf("%d-th call_func() called\n", i);
+	if(i < 5) call_func(++i);
 }
 
 int main(int argc, char** argv){
-	printf("main start\n");
-	call_func2(0);
-	printf("main end\n");
+	printf("main() started.\n");
+	call_func(0);
+	call_func1(0);
+	printf("main() ended. Try typing anything. If you type 'escape', the process ends\n");
 }

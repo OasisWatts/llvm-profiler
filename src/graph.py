@@ -30,8 +30,9 @@ def draw(foldername, filename, yLabel):
 				oy = yList
 				ox = xList
 				yList.sort(reverse=True)
-				yList = yList[:elemNum]
-				xList = elemNum*[0]
+				if elemNum < len(xList):
+					yList = yList[:elemNum]
+					xList = elemNum*[0]
 				for yi, y in enumerate(yList):
 					oi = oy.index(y)
 					xList[yi] = ox[oi]
@@ -44,14 +45,14 @@ def draw(foldername, filename, yLabel):
 				plt.xlabel("function")
 				plt.ylabel(yLabel)
 				plt.title(yLabel + " of Functions")
-				plt.savefig(foldername + "/" + str(recordNum)+"_"+filename + ".png")
+				plt.savefig("../record/" + foldername + "/" + str(recordNum)+"_"+filename + ".png")
 				plt.clf()
 				plt.bar([i for i in range(len(xList))], yRatioList)
 				plt.xticks([i for i in range(len(xList))], xList, rotation=90)
 				plt.xlabel("function")
 				plt.ylabel(yLabel)
 				plt.title(yLabel + " Ratio of Functions")
-				plt.savefig(foldername + "/" + str(recordNum)+"_"+filename + "_ratio.png")
+				plt.savefig("../record/" + foldername + "/" + str(recordNum)+"_"+filename + "_ratio.png")
 				plt.clf()
 				xList = []
 				yList = []
@@ -77,7 +78,7 @@ def draw_all(folder_name):
 
 if __name__ == "__main__":
 	if len(sys.argv) == 2:
-		print("Working...\n");
+		print("Drawing graph...\n");
 		folder_name = sys.argv[1]
 		draw_all(folder_name)
 	else:

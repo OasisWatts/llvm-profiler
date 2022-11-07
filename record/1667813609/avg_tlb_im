@@ -1,0 +1,12 @@
+# 22
+printf 5
+_Z9call_funci 22
+_Z10call_func1i 34
+# 34
+printf 5
+_Z9call_funci 22
+_Z10call_func1i 34
+# 36
+printf 5
+_Z9call_funci 22
+_Z10call_func1i 34
