@@ -29,7 +29,7 @@ cd papi/src
 ./configure --prefix=$PWD/install
 make && make install
 ```
-Pyhon3 is required. Install matplotlib if not exist.
+Python3 is required. Install matplotlib if not exists.
 ```
 pip install matplotlib
 pip install PyQt6
@@ -47,14 +47,14 @@ To execute on the target file, write TARGET\_DIR, TARGET\_CODE, TARGET\_OUTPUT, 
 make target
 make run
 ```
-To see records, execute this.
+To see the records, execute this.
 ```
 ./display.sh {record folder name (something 10 digits)}
 ```
-display.sh executes two python files. One is for drawing graph and the other is for displaying. If you want only one to be executed, execute each file in the src directory.
+display.sh executes two python files. One is for drawing graphs and the other is for displaying them with a new interface. If you want only one to be executed, execute each file in the src directory.
 ```
 cd src
 python3 graph.py {record folder name}
 python3 interface.py {record folder name}
 ```
-You can also check graph png file and data file in the record folder.
+You can also check graph png files and data files in the record folder.
