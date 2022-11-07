@@ -1,7 +1,7 @@
 The source code has LLVMProfiler.so (LLVM Pass code), profiler.cpp and profiler-link.cpp (profiling code).  
-While compiling, the target code passes the LLVM Pass code, to insert the functions in profiler.cpp into the target code. And the compiled target is executed inside the thread of a executable file.
+While compiling, the target code passes the LLVM Pass code, to insert the functions for profiling into the target code. And the compiled target is executed inside the thread of a executable file.
 # Installation
-clang, opt, and llvm-link tools in LLVM is required
+Clang, opt, and llvm-link tools in LLVM is required
 ```
 git clone https://github.com/llvm/llvm-project.git
 cd llvm-project
@@ -18,7 +18,7 @@ sudo cmake -P cmake_install.cmake
 cd ../llvm-symbolizer
 sudo cmake -P cmake_install.cmake
 ```
-check clang, opt, and llvm-link tools are well installed
+Check clang, opt, and llvm-link tools are well installed
 ```
 whereis clang++ clang opt llvm-link
 ```
