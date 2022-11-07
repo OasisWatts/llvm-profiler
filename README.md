@@ -28,14 +28,9 @@ Pyhon3 is required. Install matplotlib if not exist
 	pip install matplotlib
 	pip install PyQt6
 # Code
-It consists of LLVMProfiler.so (LLVM Pass code), profiler.bc (profiling code)
+This consists of LLVMProfiler.so (LLVM Pass code), profiler.cpp and profiler-link.cpp (profiling code)
 # How to Use
 	make profiler
-	make test # to test
-	write TARGET_DIR, TARGET_CODE, TARGET_OUTPUT, TARGET_ARG in Makefile and run make target
-# If you want to write code yourself
-	clang(++) -emit-llvm -c {target code (.c, .cpp)}
-	opt -load {location to LLVMProfiler.so} -enable-new-pm=0 --profilerModule <{target code (.bc)}> /dev/null -o {loaded code (.bc)}
-	llvm-link profiler.bc {loaded code (.bc)} -o {linked code (.bc)}
-	clang(++) {PAPI install location}/lib/libpapi.so.6.0 -c {linked code (.bc)}
-	LD_LIBRARY_PATH=:{PAPI install locatoin}/lib {execution file}
+Run test
+	make test
+Write TARGET\_DIR, TARGET\_CODE, TARGET\_OUTPUT, TARGET\_ARG in Makefile and run make target
