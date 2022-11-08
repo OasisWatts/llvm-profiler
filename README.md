@@ -44,7 +44,7 @@ Run test.
 make test
 ```
 To execute on the target file, write TARGET\_DIR, TARGET\_CODE, TARGET\_OUTPUT, TARGET\_ARG in Makefile.
-If you want to compile inside of the target program directory, not using this Makefile, you may need to define "PROFILER\_DIR" macro in src/profiler.cpp to let know the record folder directory which is also used when drawing graph and displaying results.
+If you want to compile inside of the target program directory, not using this Makefile, you may need to define "PROFILER\_DIR" macro in src/profiler.cpp to let know the location of the record folder directory which is also used when drawing graph and displaying results.
 ```
 make target
 make run
