@@ -8,7 +8,7 @@ cd llvm-project
 mkdir build
 cd build
 cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Release" -DLLVM_ENABLE_PROJECTS="clang" ../llvm
-cmake --build . --target opt;clang;llvm-link -j {the number of parallel jobs you want}
+cmake --build . --target opt;clang;llvm-link 
 cd tools/clang
 sudo cmake -P cmake_install.cmake
 cd ../opt

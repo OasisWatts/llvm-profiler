@@ -25,10 +25,10 @@ profiler: src/profiler-link.cpp
 	llvm-link $(^:%.cpp=%-pass.bc) src/profiler-link.bc -o $(^:%.cpp=%-link.bc)
 
 target: $(TARGET_CODE:%.cpp=TARGET_DIR/%-link.bc)
-	$(CLANG) $(papi_opt) $(papi_lib) src/profiler.cpp $^ /home/pm/pmdk/src/nondebug/libvmem.a -pthread -DPROFILER_DIR=/home/oasis/profiler -o $(TARGET_DIR)/$(TARGET_OUTPUT) $(TARGET_ARG)
+	$(CLANG) $(papi_opt) $(papi_lib) src/profiler.cpp $^ /home/pm/pmdk/src/nondebug/libvmem.a -pthread -o $(TARGET_DIR)/$(TARGET_OUTPUT) $(TARGET_ARG)
 
 test: $(TEST_CODE:%.cpp=$(TEST_DIR)/%-link.bc)
-	$(CLANG) $(papi_opt) $(papi_lib) src/profiler.cpp $^ /home/pm/pmdk/src/nondebug/libvmem.a -pthread -DPROFILER_DIR=/home/oasis/profiler -o $(TEST_DIR)/test.out
+	$(CLANG) $(papi_opt) $(papi_lib) src/profiler.cpp $^ /home/pm/pmdk/src/nondebug/libvmem.a -pthread -o $(TEST_DIR)/test.out
 	LD_LIBRARY_PATH=:$(PAPI_DIR)/lib ./$(TEST_DIR)/test.out
 
 test-clean: 
@@ -38,5 +38,5 @@ record-clean-all:
 	rm -rf record/*
 
 run :
-	LD_LIBRARY_PATH=:$(PAPI_DIR)/lib ./$(TARGET_DIR)/$(TARGET_OUTPUT)
+	LD_LIBRARY_PATH=:$(PAPI_DIR)/lib $(TARGET_DIR)/$(TARGET_OUTPUT)
 .PHONY: run

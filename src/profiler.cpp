@@ -275,7 +275,7 @@ void* target_thread(void* t_arg){
 	struct thread_arg *arg = (struct thread_arg*)t_arg;
 	struct stat dir_stat = {0};
 	time(&begin_time);
-	sprintf(folder_name, "%srecord/%ld", save_dir, begin_time);
+	sprintf(folder_name, "%s/record/%ld", save_dir, begin_time);
 	printf("The data will going to save in folder, '%s'.\n", folder_name);
 	if(stat(folder_name, &dir_stat) == -1){
 		mkdir(folder_name, 0777);
@@ -291,6 +291,7 @@ int main(int argc, char** argv){
 	t_arg->c = argc;
 	t_arg->v = argv;
 	strncpy(save_dir,__BASE_FILE__,strlen(__BASE_FILE__) - strlen("src/profiler.cpp"));
+	//strncpy(save_dir, PROFILER_DIR,strlen(PROFILER_DIR));
 
 	int thr_id = pthread_create(&pthread, NULL, &target_thread, t_arg);
 	if(thr_id < 0){
