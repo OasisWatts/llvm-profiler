@@ -12,6 +12,9 @@
 #include "papi.h"
 #include "profiler.h"
 
+//#define PROFILER_DIR /home/oasis/profiler
+#define STR(s) #s
+#define STR2(s) STR(s)
 //#define DEBUG
 
 #ifdef DEBUG
@@ -31,7 +34,6 @@ bool inited = false;
 time_t begin_time;
 char folder_name[100];
 int record_num = 0;
-char save_dir[MAXSTR]; // = __BASE_FILE__; // you need to write full path when compile
 
 /** function execution count */
 map<char*, int> CNT = {};
@@ -275,7 +277,12 @@ void* target_thread(void* t_arg){
 	struct thread_arg *arg = (struct thread_arg*)t_arg;
 	struct stat dir_stat = {0};
 	time(&begin_time);
-	sprintf(folder_name, "%s/record/%ld", save_dir, begin_time);
+#ifdef PROFILER_DIR
+	sprintf(folder_name, "%s/record/%ld", STR2(PROFILER_DIR), begin_time);
+#else
+	sprintf(folder_name, "record/%ld", begin_time);
+#endif
+	printf("folder name %s\n", folder_name);
 	printf("The data will going to save in folder, '%s'.\n", folder_name);
 	if(stat(folder_name, &dir_stat) == -1){
 		mkdir(folder_name, 0777);
@@ -283,6 +290,7 @@ void* target_thread(void* t_arg){
 	targetMain(arg->c, arg->v);
 	return NULL;
 }
+
 int main(int argc, char** argv){
 	pthread_t pthread;
 	int status;
@@ -290,9 +298,6 @@ int main(int argc, char** argv){
 	struct thread_arg *t_arg = (struct thread_arg*)malloc(sizeof(struct thread_arg));
 	t_arg->c = argc;
 	t_arg->v = argv;
-	strncpy(save_dir,__BASE_FILE__,strlen(__BASE_FILE__) - strlen("src/profiler.cpp"));
-	//strncpy(save_dir, PROFILER_DIR,strlen(PROFILER_DIR));
-
 	int thr_id = pthread_create(&pthread, NULL, &target_thread, t_arg);
 	if(thr_id < 0){
 		handle_error((char*)"thread create error\n");	
