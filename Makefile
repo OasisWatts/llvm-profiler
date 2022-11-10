@@ -17,6 +17,7 @@ all: profiler comp run
 .PHONY: all
 
 profiler: src/profiler-link.cpp
+	if [ ! -d "record" ]; then mkdir record; fi
 	$(CLANG) $(opt) $^ -o src/profiler-link.bc
 
 %-link.bc: %.cpp
