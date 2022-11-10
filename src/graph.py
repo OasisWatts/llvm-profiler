@@ -1,9 +1,11 @@
 import sys
 import matplotlib.pyplot as plt
 import numpy as np
+import math
 import os.path as os
 
 ELEMNUM = 30
+progress = 0
 
 plt.figure(figsize=(15,10), tight_layout=True)
 plt.rcParams.update({
@@ -44,6 +46,9 @@ def draw(foldername, filename, yLabel):
 	yListOld = []
 	yListPerRec = [] # y value per record
 	recordNum = 0
+	global progress
+	print(f'Drawing graph... {math.floor(progress*100/7)}%', end="\r")
+	progress = progress + 1
 # read file 
 	fx = open("../record/" + foldername + "/" + filename, "r")
 	while True:
@@ -94,10 +99,12 @@ def draw_all(folder_name):
 	draw(folder_name, "total_tlb_im", "Total Instruction TLB")
 	draw(folder_name, "avg_tlb_dm", "Average Data TLB")
 	draw(folder_name, "avg_tlb_im", "Average Instruction TLB")
+	print(f"Drawing graph... 100%\n")
+	print("Complete\n")
 
 if __name__ == "__main__":
 	if len(sys.argv) == 2:
-		print("Drawing graph...\n");
+		print(f"Drawing graph... 0%", end="\r");
 		folder_name = sys.argv[1]
 		draw_all(folder_name)
 	else:
